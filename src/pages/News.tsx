@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { UltraModern3DNewsHub } from '@/components/News/UltraModern3DNewsHub';
+import { UltraMega3DNewsHub } from '@/components/News/UltraMega3DNewsHub';
 import { NewsProvider } from '@/contexts/NewsContext';
 import { Header } from '@/components/StudentHub/Header';
 import { FooterSection } from '@/components/StudentHub/FooterSection';
@@ -157,7 +157,7 @@ const News = () => {
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           }>
-            <UltraModern3DNewsHub />
+            <UltraMega3DNewsHub />
           </Suspense>
 
           {/* Footer */}

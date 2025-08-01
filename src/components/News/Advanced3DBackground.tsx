@@ -2,11 +2,23 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import * as random from 'maath/random/dist/maath-random.esm';
+import * as THREE from 'three';
 
 function AnimatedStars(props: any) {
   const ref = useRef<any>();
-  const [sphere] = useMemo(() => [random.inSphere(new Float32Array(2000), { radius: 2.5 })], []);
+  const [sphere] = useMemo(() => {
+    const positions = new Float32Array(2000 * 3);
+    for (let i = 0; i < 2000; i++) {
+      const radius = 2.5;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const theta = 2 * Math.PI * Math.random();
+      
+      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = radius * Math.cos(phi);
+    }
+    return [positions];
+  }, []);
 
   useFrame((state, delta) => {
     if (ref.current) {
